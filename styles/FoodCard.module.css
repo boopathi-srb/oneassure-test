@@ -1,0 +1,85 @@
+.card_wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 3;
+    overflow: hidden;
+    width: 200px;
+    position: relative;
+}
+.info_wrapper{
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 4%;
+}
+.popular_wrapper{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    padding: 4px;
+    background-color: #feeb6f;
+}
+.popular_text{
+    font-size: xx-small;
+    letter-spacing: 1ch;
+    font-family: Roboto;
+    font-weight: bold;
+}
+.image_wrapper {
+    position: relative;
+    display: inline-block; 
+    margin: 0;
+    padding: 0%;
+}
+  
+.triangle_wrapper {
+    position: absolute;
+    bottom: 1.5%;
+    right: 0;
+}
+  
+.triangle {
+  position: relative;
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-bottom: 100px solid #feeb6f;
+}
+  
+.triangle_text {
+  margin: 0;
+  position: absolute;
+  font-size: x-small;
+  font-family: 'Rock Salt', cursive;
+  top: 50px;
+  right:0px;
+}
+
+.supereasy_wrapper{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+  
+.duration_wrapper{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.duration_text{
+    font-size: x-small;
+    font-weight: 600;
+}
+
+.supereasy_text{
+    font-size: x-small;
+    font-weight: 600;
+}
+
+.title{
+    font-size: medium;
+    line-clamp: 2;
+}

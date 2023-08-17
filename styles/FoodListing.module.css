@@ -1,0 +1,151 @@
+.title_wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.logo_wrapper{
+    font-weight: 400;
+    position: relative;
+    font-size: xx-large;
+}
+
+.recipe{
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    font-size: x-small;
+    font-family: 'Allura', cursive;
+}
+
+
+.category_wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.category_box{
+    border-left: 2px solid grey;
+    border-top: 2px solid grey;
+    border-bottom: 2px solid grey;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.select_wrapper{
+    background-color: rgb(224, 224, 224);
+    height: 40px;
+    width:140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.select_wrapper select{
+    border: none;
+    background:transparent;
+    outline: none;
+}
+.select_wrapper select:focus{
+    border: none;
+    outline: none;
+}
+.input_wrapper{
+    height: 40px;
+    width: 300px;
+    display: flex;
+    padding: 2px;
+    justify-content: center;
+    align-items: center;
+}
+.input_wrapper input{
+    border: none;
+    background:transparent;
+    outline: none;
+    width: 100%;
+}
+
+.search_wrapper{
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #feeb6f;
+    height: 50px;
+    width: 50px;
+}
+
+
+.right_wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: max-content;
+}
+.favourite_wrapper{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid grey;
+    padding-right: 30px;
+}
+.favourite_wrapper button{
+    background: transparent;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.favourite_wrapper button:focus{
+    background: transparent;
+    border: none;
+    outline: none;
+}
+.cart_wrapper{
+    display: flex;
+    align-items: center;
+    width: 100px;
+    gap: 3px;
+    white-space: nowrap;
+    padding: 8px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.listing_wrapper{
+    width: 80vw;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.filter_wrapper{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card_wrapper{
+    display: flex;
+    width: 60%;
+    flex-wrap: wrap;
+    gap: 20px;
+}
