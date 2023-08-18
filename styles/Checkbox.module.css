@@ -1,0 +1,20 @@
+.checkbox_wrapper{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2ch;
+}
+.checkbox_wrapper label{
+    line-height: 0%;
+    text-transform: capitalize;
+    font-size: small;
+    font-weight: 500;
+}
+.checkbox{
+    width: 16px;
+    height: 16px;
+    border-radius: 20px;
+    background: transparent;
+    border: 2px solid rgb(197, 195, 195);
+    outline: none;
+}

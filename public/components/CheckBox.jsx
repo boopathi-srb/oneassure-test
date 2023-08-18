@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-
-
+import styles from '../../styles/Checkbox.module.css'
 const Checkbox = ({
   label,
   name,
@@ -9,12 +8,12 @@ const Checkbox = ({
 }) => {
 
   return (
-    <div className={''}>
+    <div className={styles.checkbox_wrapper}>
       <input
         id={name}
         name={name}
         type="checkbox"
-        className={``}
+        className={styles.checkbox}
         checked={defaultChecked}
         onChange={(e) => onChange && onChange(e.target.checked)}
       />

@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+ 
+import '../styles/fonts.css';
 
 export default function Home() {
   return (
@@ -7,11 +9,10 @@ export default function Home() {
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
-        <style>
-          @import url('https://fonts.googleapis.com/css2?family=Allura&family=Noto+Serif+Khitan+Small+Script&family=Roboto&family=Rock+Salt&display=swap');
-        </style>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet"></link>
       </Head>
-      <main>
+      <main style={{ fontFamily: 'Main' }}>
     
       </main>
     </div>

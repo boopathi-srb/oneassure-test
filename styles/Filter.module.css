@@ -1,0 +1,50 @@
+@import '../styles/fonts.css';
+.checkbox_wrapper{
+    display: block;
+    font-family: 'Main';
+}
+.title_wrapper{
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+.title{
+    font-weight: bold;
+    font-size: large;
+    font-family: 'Main';
+}
+
+.reset{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.checkbox_innerwrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: flex-start;
+}
+
+.filter_name{
+    border-radius: 10px;
+    padding: 10px;
+    border:1px solid rgb(210, 210, 210);
+    font-family: 'Main';
+    font-size: small;
+    width: 100%;
+}
+
+
+.filter_wrapper{
+    font-family: 'Main';
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.filter_comp_wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 2ch;
+}

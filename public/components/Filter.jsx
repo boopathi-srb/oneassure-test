@@ -100,16 +100,16 @@ const Filter = ({ data, filteredData, setFilteredData}) => {
     const renderSeasonType=(seasonMainArray)=>{
         return(
             <div className={styles.checkbox_wrapper} key={"season"}>
-                <div>
-                    <span>
+                <div className={styles.title_wrapper}>
+                    <span className={styles.title}>
                         By Season:
                     </span>
-                    <span onClick={()=>{setSeasonArray([])}}>
+                    <span className={styles.reset} onClick={()=>{setSeasonArray([])}}>
                         Reset
                     </span>
                 </div>
                 <hr/>
-                <div>
+                <div className={styles.checkbox_innerwrapper}>
                     {
                         seasonMainArray.map((seasons)=>{
                             return (
@@ -135,11 +135,11 @@ const Filter = ({ data, filteredData, setFilteredData}) => {
     const renderDietaryPreferenceType=(dietaryPreferenceMainArray)=>{
         return(
             <div className={styles.checkbox_wrapper} key={"diet preference"}>
-                <div>
-                    <span>
+                <div className={styles.title_wrapper}>
+                    <span className={styles.title}>
                         By Diet Preference:
                     </span>
-                    <span onClick={()=>{setDietaryPreferenceArray([])}}>
+                    <span className={styles.reset} onClick={()=>{setDietaryPreferenceArray([])}}>
                         Reset
                     </span>
                 </div>
@@ -170,11 +170,11 @@ const Filter = ({ data, filteredData, setFilteredData}) => {
     const renderMealType=(mealMainArray)=>{
         return(
             <div className={styles.checkbox_wrapper} key={"mealtype"}>
-                <div>
-                    <span>
+                <div className={styles.title_wrapper}>
+                    <span className={styles.title}>
                         By Meal Type:
                     </span>
-                    <span onClick={()=>{setMealArray([])}}>
+                    <span className={styles.reset} onClick={()=>{setMealArray([])}}>
                         Reset
                     </span>
                 </div>
@@ -206,11 +206,11 @@ const Filter = ({ data, filteredData, setFilteredData}) => {
     const renderSweetThingsType=(sweetThingsMainArray)=>{
         return(
             <div className={styles.checkbox_wrapper} key={"sweetThings"}>
-                <div>
-                    <span>
+                <div className={styles.title_wrapper}>
+                    <span  className={styles.title}>
                         By Sweet Things:
                     </span>
-                    <span onClick={()=>{setSweetThingsArray([])}}>
+                    <span className={styles.reset} onClick={()=>{setSweetThingsArray([])}}>
                         Reset
                     </span>
                 </div>
@@ -243,10 +243,11 @@ const Filter = ({ data, filteredData, setFilteredData}) => {
     const searchBar = () => {
         return (
           <div key={"searchBar"}>
-            <h2>Search Recipe Titles</h2>
+            <h2 className={styles.title}>Search Recipe Titles</h2>
             <input
               type="text"
               placeholder="Enter keyword..."
+              className={styles.filter_name}
               onChange={(e) => setSearchValue(e.target.value)}
             />
           </div>
@@ -254,8 +255,8 @@ const Filter = ({ data, filteredData, setFilteredData}) => {
     };
 
   return (
-    <div>
-      <div>
+    <div className={styles.filter_wrapper}>
+      <div className={styles.heading_wrapper}>
          <h2>
             Filter recipes:
          </h2>
@@ -263,7 +264,7 @@ const Filter = ({ data, filteredData, setFilteredData}) => {
             Click multiple boxes below to narrow recipe search results
          </p>
       </div>
-      <div>
+      <div className={styles.filter_comp_wrapper}>
          {renderSeasonType(seasonMainArray)}
          {renderDietaryPreferenceType(dietaryPreferenceMainArray)}
          {renderMealType(mealMainArray)}
