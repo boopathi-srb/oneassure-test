@@ -1,4 +1,4 @@
-@import 'fonts.css';
+@import 'fonts.module.css';
 
 .title_wrapper{
     display: flex;

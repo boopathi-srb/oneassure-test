@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
  
-import '../styles/fonts.css';
+import '../styles/fonts.module.css';
 
 export default function Home() {
   return (

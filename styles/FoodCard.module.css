@@ -1,4 +1,4 @@
-@import 'fonts.css';
+@import 'fonts.module.css';
 .card_wrapper{
     display: flex;
     flex-direction: column;
