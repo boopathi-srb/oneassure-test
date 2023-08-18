@@ -13,13 +13,21 @@ export default function FirstPost() {
   const [selectedProductCount, setSelectedCount] =  useState(1);
   const [productData,setProductData] = useState(dummyData);
   const handleSelect = (data) =>{
+    if(cart.some((items)=>{return items.cartItems.productCode===data.productCode})){
+      console.log(cart.find((items)=>{
+        return items.cartItems.productCode===data.productCode
+      }).count,"'find cart")
+      setSelectedCount((prev)=>{return prev=cart.find((items)=>{
+        return items.cartItems.productCode===data.productCode
+      }).count})
+    }
+    else{
+      setSelectedCount((prev)=>{return prev=1})
+    }
     setSelectedProduct((prev)=>{prev=data; return prev });
     setShowOverLay(true);
   }
-  useEffect(()=>{
-    setSelectedCount(1)
-  },[showOverLay])
-  console.log(productData.length,'------------------>cart')
+  console.log(cart,'------------------>cart')
     return (
       <>
       {
@@ -27,14 +35,15 @@ export default function FirstPost() {
         <Overlay
           children={<>
            {
-            cart.length>0?
+            !!cart&&cart.length>0?
             <div className={styles.overlay_wrapper}>
               <div className={styles.overlay_top}>
+               <span className={styles.add_to_cart}>Your Cart</span>
                {
-                 cart.map((items,index)=>{
+                 cart.filter((cart)=>{return cart.count>0}).map((items,index)=>{
                    return(
                      <div className={styles.overlay_cartlist} key={index}>
-                       <div>
+                       <div className={styles.overlay_cartListFlex}>
                           <span className={styles.overlay_cartitem}>{items.cartItems.title}</span>
                           <button 
                           className={styles.remove_button}
@@ -48,15 +57,42 @@ export default function FirstPost() {
                               },[]);
                             })
                           }}>
-                          Remove
+                          &#x2716;
                           </button>
                        </div>
-                       <span className={styles.overlay_cartitemcount}>{items.count}</span>
-                       <span className={styles.overlay_cartitemprice}>{items.count*items.cartItems.price}</span>
+                       <span className={styles.overlay_cartitemprice}>Rs. {items.cartItems.price}</span>
+                       <span className={styles.overlay_cartitemcount}>
+                          <button 
+                            className={styles.minus_button} 
+                            onClick={()=>
+                            setCart((prev)=>prev.map((item)=>
+                            items.cartItems.productCode===item.cartItems.productCode?{...item,count:item.count-1}:item=item
+                            ))
+                            }>
+                            -
+                          </button>
+                          <span className={styles.overlay_cartitemcount}>{items.count} No(s)</span>
+                          <button 
+                            className={styles.add_button} 
+                            onClick={()=>
+                              setCart((prev)=>prev.map((item)=>
+                            items.cartItems.productCode===item.cartItems.productCode?{...item,count:item.count+1}:item=item
+                            ))
+                            }>
+                            +
+                          </button>
+                        </span>
+                        <span className={styles.overlay_cartitemprice}>Rs. {items.count*items.cartItems.price}</span>
                      </div>
                    )
                  })
                }
+               <div className={styles.overlay_cart_totalprice_wrapper}>
+                  <span className={styles.overlay_cart_totalprice}>Total</span>
+                  <span className={styles.overlay_cartitemprice}>Rs. {cart.reduce((accumulator,currentvalue)=>{
+                  return accumulator+=currentvalue.cartItems.price*currentvalue.count
+                   },0)}</span>
+               </div>
               </div>
               <div className={styles.overlay_bottom}>
                 <span className={styles.close_button} onClick={()=>setShowCart(false)}>Close</span>
@@ -84,33 +120,38 @@ export default function FirstPost() {
             selectedProduct?
             <div className={styles.overlay_wrapper}>
               <div className={styles.overlay_top}>
+                <span className={styles.add_to_cart}>Add to cart</span>
                 <div className={styles.overlay_cartlist}>
                   <span className={styles.overlay_cartitem}>{selectedProduct.title}</span>
-                  <span className={styles.overlay_cartitemprice}>{selectedProduct.price}</span>
+                  <span className={styles.overlay_cartitemprice}>Rs. {selectedProduct.price}</span>
                   <span className={styles.overlay_cartitemcount}>
-                  <button className={styles.minus_button} disabled={selectedProductCount<2} onClick={()=>setSelectedCount((prev)=>{return prev-=1})}>
-                  -
-                  </button>
+                  <button className={styles.minus_button} disabled={selectedProductCount<2} onClick={()=>setSelectedCount((prev)=>{return prev-=1})}>-</button>
                   {selectedProductCount}
-                  <button className={styles.add_button} onClick={()=>setSelectedCount((prev)=>{return prev+=1})}>
-                  +
-                  </button>
+                  <button className={styles.add_button} onClick={()=>setSelectedCount((prev)=>{return prev+=1})}>+</button>
                   </span>
                 </div> 
-                <div>
-                  <span className={styles.overlay_cartitemprice}>Total</span>
-                  <span className={styles.overlay_cartitemprice}>{selectedProduct.price*selectedProductCount}</span>
+                <div className={styles.overlay_cart_totalprice_wrapper}>
+                  <span className={styles.overlay_cart_totalprice}>Total</span>
+                  <span className={styles.overlay_cartitemprice}>Rs. {selectedProduct.price*selectedProductCount}</span>
                 </div>
               </div>
               <div className={styles.overlay_bottom}>
-                <span className={styles.close_button} onClick={()=>setShowOverLay(false)}>Add</span>
+                <span className={styles.close_button} onClick={()=>setShowOverLay(false)}>Close</span>
                 <span 
-                className={styles.aclose_button} 
-                onClick={()=>{
-                setCart((prev)=>{return [...prev, {cartItems:selectedProduct,count:selectedProductCount}]});
-                setShowOverLay(false);
-                }}
-                >Add to cart</span>
+                  className={styles.add_to_button} 
+                  onClick={()=>{
+                  setCart((prev)=>{ 
+                    if(prev.some((items)=>{return items.cartItems.productCode === selectedProduct.productCode})) {
+                      prev[prev.findIndex((items)=>{return items.cartItems.productCode === selectedProduct.productCode})].count=selectedProductCount;
+                    }
+                    else{
+                      prev=[...prev, {cartItems:selectedProduct,count:selectedProductCount}]
+                    }
+                    return prev});
+                  setShowOverLay(false);
+                  }}>
+                  {cart.some((items)=>{return items.cartItems.productCode === selectedProduct.productCode})?"Update cart":"Add to cart"}
+                </span>
               </div>
             </div>
             :

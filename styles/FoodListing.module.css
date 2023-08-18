@@ -178,3 +178,117 @@
     justify-content: center;
     align-content: center;
 }
+
+
+.overlay_wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* gap: 6ch; */
+}
+
+.overlay_top{
+    width: 60ch;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 4ch;
+}
+.add_to_cart{
+    width: 100%;
+    text-align: left;
+    font-size: large;
+    font-weight: 900;
+    /* font-family: "Main"; */
+    border-bottom: 2px solid rgb(170, 169, 169);
+}
+.overlay_cartlist{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Main';
+}
+.overlay_cartitem{
+    font-weight: 800;
+}
+.overlay_cartitemprice{
+    color: green;
+    font-weight: 800;
+}
+.overlay_cartitemcount{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.overlay_cartitemcount button{
+    border-radius: 5px;
+    font-size: medium;
+    font-weight: bolder;
+    height: 30px;
+    width: 30px;
+    font-family: 'Main';
+    cursor: pointer;
+}
+.minus_button{
+    background: transparent;
+    border: 2px solid green;
+    color: green;
+}
+.minus_button:disabled{
+    background: rgb(220, 220, 220);
+    border: none;
+    color: grey;
+    cursor: not-allowed;
+}
+.add_button{
+    background-color: green;
+    color: white;
+    border: none;
+}
+.overlay_cart_totalprice_wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    font-family: "Main";
+    font-weight:900
+}
+.overlay_bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5ch;
+}
+.close_button{
+    padding: 1ch 2ch;
+    border-radius: 1ch;
+    border: 2px solid grey;
+    background:  rgb(245, 245, 245);
+    cursor: pointer;
+}
+.add_to_button{
+    background: green;
+    font-weight: 800;
+    color:white;
+    padding: 1ch 2ch;
+    border-radius: 1ch;
+    cursor: pointer;
+}
+.overlay_cartListFlex{
+    display: flex;
+    align-items: center;
+    gap: 2ch;
+}
+.remove_button{
+    border: none;
+    background: rgb(255, 136, 136);
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: x-small;
+    padding: 4px 8px;
+    font-family: 'Main';
+    cursor: pointer;
+}
