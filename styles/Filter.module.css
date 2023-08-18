@@ -1,4 +1,4 @@
-@import '../styles/fonts.css';
+@import 'fonts.css';
 .checkbox_wrapper{
     display: block;
     font-family: 'Main';
