@@ -17,7 +17,7 @@ export default function Home() {
         </Link>
 
         <div className={styles.grid}>
-          <a href="" className={styles.card}>
+          <a href="https://drive.google.com/drive/folders/1BdxMO0CvFKstysG9opOkqMDm8aDVvaZp?usp=sharing" className={styles.card}>
             <h3>Documentation &rarr;</h3>
             <p>Find the code architecture and more.</p>
           </a>
