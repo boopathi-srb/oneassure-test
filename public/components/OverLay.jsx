@@ -1,24 +1,53 @@
 // components/Overlay.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from '../../styles/OverLay.module.css';
 
-const Overlay = ({ children, showOverLay }) => {
+const Overlay = ({ children, showOverlay }) => {
+  const [showOverLay, setShowOverLay] = useState(showOverlay)
+  const containerRef = useRef(null);
+  const overLayRef = useRef(null);
   useEffect(()=>{
-    const targetDiv = document.getElementById('targetDiv');
-    document.addEventListener('click', function(event) {
-      if (targetDiv.contains(event.target)) {
-        showOverLay(false)
-      }
-    });
-  },[])
+    setShowOverLay(true)
+  },[showOverlay])
+  // useEffect(() => {
+  //   if (eventClickOutsideDiv) {
+  //     document.removeEventListener("click", eventClickOutsideDiv);
+  //   }
+   
+  //   showOverLay && document.addEventListener("click", eventClickOutsideDiv);
+  //   return () => {
+  //     document.removeEventListener("click", eventClickOutsideDiv);
+  //   };
+  // }, [showOverLay]);
   
-
+  const eventClickOutsideDiv = (event) => {
+    if (!containerRef.current) {
+      console.log("event here")
+      return;
+    }
+    // CLICK IN_SIDE
+    if (!showOverLay || containerRef.current.contains(event.target)) {
+      console.log("bug here")
+      return;
+    }
+    if(event.target===overLayRef.current){
+      console.log(event.target, containerRef.current,"refs")
+      setShowOverLay(false)
+    }
+    else{
+      setShowOverLay(true)
+    }
+    // CLICK OUT_SIDE
+  };
+  console.log(showOverLay,'overlay')
   return (
-    <div id="targetDiv" className={styles.overlay}>
-      <div  className={styles.overlayContent}>
-        {children}
+    <>
+      <div ref={overLayRef} className={styles.overlay}>
+        <div id="targetDiv" ref={containerRef} className={styles.overlayContent}>
+          {children}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

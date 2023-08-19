@@ -25,6 +25,7 @@ export default function FirstPost() {
   const [selectedProduct, setSelectedProduct] = useState();
   const [selectedProductCount, setSelectedCount] =  useState(1);
   const [productData,setProductData] = useState(dummyData);
+ 
   const handleSelect = (data) =>{
     if(cart.some((items)=>{return items.cartItems.productCode===data.productCode})){
       console.log(cart.find((items)=>{
