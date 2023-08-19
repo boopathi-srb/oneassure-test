@@ -17,4 +17,5 @@
     background: transparent;
     border: 2px solid rgb(197, 195, 195);
     outline: none;
+    cursor: pointer;
 }

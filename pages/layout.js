@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
     <div className={styles.container}>
       <Navbar />
       <main className={styles.content}>{children}</main>
-      <footer className={styles.footer}>Footer content here</footer>
+      {/* <footer className={styles.footer}>Footer content here</footer> */}
     </div>
   );
 };

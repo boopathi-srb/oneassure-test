@@ -12,11 +12,11 @@ export default function FoodCard(data1) {
                 alt={data.title}
                 className={styles.image}
                 />
-                <div className={styles.triangle_wrapper}>
+                {data.isOrganic&&<div className={styles.triangle_wrapper}>
                     <div className={styles.triangle}>
                         <p className={styles.triangle_text}>100% ORGANIC</p>
                     </div>
-                </div>
+                </div>}
             </div>
             <div className={styles.info_wrapper}>
                 <div className={styles.duration_wrapper}>

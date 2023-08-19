@@ -2,7 +2,7 @@ export const dummyData = [
     {
       "productCode": 1,
       "title": "Fruit Salad",
-      "isOrganic": true,
+      "isOrganic": false,
       "isPopular": false,
       "isSuperEasy": true,
       "season": "spring",
@@ -310,7 +310,7 @@ export const dummyData = [
     {
       "productCode": 23,
       "title": "Oatmeal Cookies",
-      "isOrganic": true,
+      "isOrganic": false,
       "isPopular": false,
       "isSuperEasy": true,
       "season": "spring",
@@ -338,7 +338,7 @@ export const dummyData = [
     {
       "productCode": 25,
       "title": "Vanilla Cupcakes",
-      "isOrganic": true,
+      "isOrganic": false,
       "isPopular": true,
       "isSuperEasy": true,
       "season": "spring",
