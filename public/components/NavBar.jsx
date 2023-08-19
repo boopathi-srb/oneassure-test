@@ -18,6 +18,7 @@ const Navbar = () => {
       setUserName("");
     }
   })
+  console.log(signedIn,"signed in")
   return (
     <nav className={styles.navbar}>
       <ul className={styles.navLinks}>
@@ -30,7 +31,7 @@ const Navbar = () => {
         :
         <></>
       }
-      <ul className={styles.navLinks}>
+      <ul className={styles.navLinks_right}>
       {
         signedIn?
         <li className={router.pathname === '/signin' ? styles.active : ''} style={{cursor:'pointer'}} onClick={()=>{sessionStorage.setItem('isLoggedIn', false); window.location.reload()}}>Sign out</li>

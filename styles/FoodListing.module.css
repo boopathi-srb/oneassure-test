@@ -117,6 +117,7 @@
     font-family: 'Main';
     font-size: medium;
     gap: 5px;
+    cursor: pointer;
 }
 .favourite_wrapper button:focus{
     background: transparent;
@@ -126,14 +127,34 @@
 .cart_wrapper{
     display: flex;
     align-items: center;
+    cursor: pointer;
     width: 100%;
     gap: 3px;
     white-space: nowrap;
     padding: 8px;
     font-size: medium;
+    position: relative;
+}
+.cart_icon{
+    position: relative;
+    width: 16px;
+    height: 16px;
 }
 
-
+.cart_bubble{
+    position: absolute;
+    top: -80%;
+    left: -80%;
+    background-color: #feeb6f;
+    width: 16px;
+    height: 16px;
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    padding: 2px;
+}
 
 
 
@@ -180,6 +201,9 @@
 }
 
 
+
+
+
 .overlay_wrapper{
     display: flex;
     flex-direction: column;
@@ -195,13 +219,55 @@
     align-items: flex-end;
     gap: 4ch;
 }
+
+.overlay_empty{
+    width: 60ch;
+    text-align: center;
+}
+
+.empty_add_button{
+    border-radius: 5px;
+    font-size: medium;
+    font-weight: bolder;
+    height: 30px;
+    width: 30px;
+    font-family: 'Main';
+    cursor: pointer;
+    background-color: green;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1ch 2ch;
+}
+.empty_bottom{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 5ch;
+}
 .add_to_cart{
     width: 100%;
     text-align: left;
     font-size: large;
     font-weight: 900;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     /* font-family: "Main"; */
     border-bottom: 2px solid rgb(170, 169, 169);
+}
+.add_to_cart button{
+    font-size: medium;
+    font-weight: bolder;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
 }
 .overlay_cartlist{
     width: 100%;
@@ -276,6 +342,13 @@
     border-radius: 1ch;
     cursor: pointer;
 }
+.add_to_button:disabled{
+    background: rgb(220, 220, 220);
+    border: none;
+    color: grey;
+    cursor: not-allowed;
+}
+
 .overlay_cartListFlex{
     display: flex;
     align-items: center;
@@ -290,5 +363,44 @@
     font-size: x-small;
     padding: 4px 8px;
     font-family: 'Main';
+    cursor: pointer;
+}
+
+.fav_overlay_wrapper{
+    width: 100%;
+    height: 100%;
+    
+}
+.fav_card_wrapper{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6ch;
+    margin-top: 3ch;
+    width: max-content;
+    max-width: 60vw;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding:3ch;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+}
+.fav_card{
+    position: relative;
+}
+.fav_clear{
+    background: rgb(236, 236, 236);
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 1ch;
+    position: absolute;
+    top: -10px;
+    right: -10px;
     cursor: pointer;
 }

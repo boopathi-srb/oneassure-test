@@ -9,7 +9,7 @@ export default function Home() {
     <Layout className={styles.container}>
       <div style={{ fontFamily: 'Main' }}>
         <h1 className={styles.title}>
-          This is an assignment done by <a href="https://linkedin.in/rathinaboopathi-srb">Rathina  Boopathi</a> for OneAssure.
+          This is an assignment done by <a href="https://www.linkedin.com/in/rathinaboopathi-srb/">Rathina  Boopathi</a> for OneAssure.
         </h1>
 
         <Link href={'/listings/food-listing'} className={styles.description}>
