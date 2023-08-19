@@ -1,0 +1,22 @@
+@import 'fonts.module.css';
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Main';
+    gap: 2ch;
+    margin: 0;
+  }
+  
+  .content {
+    flex: 1;
+  }
+  
+  .footer {
+    padding: 1rem;
+    text-align: center;
+    background-color: #333;
+    color: white;
+  }
+  

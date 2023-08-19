@@ -5,7 +5,19 @@ import styles from '../../styles/FoodListing.module.css'
 import { useEffect, useState } from 'react';
 import Overlay from '../../public/components/OverLay';
 import Filter from '../../public/components/Filter';
+import { useRouter } from 'next/router';
+import Layout from '../layout';
+
 export default function FirstPost() {
+  const [signedOut, signIn] = useState(false)
+  const Router =  useRouter();
+  useEffect(()=>{
+    let any = localStorage.getItem("user");
+    console.log(any,"=any")
+    if(!any){
+      Router.push('/signin')
+    }
+  },[])
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [showOverLay, setShowOverLay] = useState(false);
@@ -29,7 +41,7 @@ export default function FirstPost() {
   }
   console.log(cart,'------------------>cart')
     return (
-      <>
+      <Layout>
       {
         showCart&&
         <Overlay
@@ -239,6 +251,6 @@ export default function FirstPost() {
            </div>}
           </div>
         </div>
-      </>
+      </Layout>
     );
   }

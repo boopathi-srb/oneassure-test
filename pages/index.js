@@ -1,20 +1,28 @@
-import Head from 'next/head';
+'use client'
 import styles from '../styles/Home.module.css';
- 
 import '../styles/fonts.module.css';
+import Link from 'next/link';
+import Layout from './layout';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet"></link>
-      </Head>
-      <main style={{ fontFamily: 'Main' }}>
-    
-      </main>
-    </div>
+    <Layout className={styles.container}>
+      <div style={{ fontFamily: 'Main' }}>
+        <h1 className={styles.title}>
+          This is an assignment done by <a href="https://linkedin.in/rathinaboopathi-srb">Rathina  Boopathi</a> for OneAssure.
+        </h1>
+
+        <Link href={'/listings/food-listing'} className={styles.description}>
+          Go the product listing page &rarr;
+        </Link>
+
+        <div className={styles.grid}>
+          <a href="" className={styles.card}>
+            <h3>Documentation &rarr;</h3>
+            <p>Find the code architecture and more.</p>
+          </a>
+        </div>
+      </div>
+    </Layout>
   )
 }
