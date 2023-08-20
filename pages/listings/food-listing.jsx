@@ -11,13 +11,7 @@ import Layout from '../layout';
 export default function FirstPost() {
   const [showFavs, setShowFavs] = useState(false)
   const Router =  useRouter();
-  // useEffect(()=>{
-  //   let any = sessionStorage.getItem("isLoggedIn");
-  //   console.log(any,"=any")
-  //   if(any!=="true"){
-  //     Router.push('/signin')
-  //   }
-  // },[])
+  const [signedIn,setSignedIn] = useState(false)
   const [favList, setFavList] = useState([]);
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
@@ -25,7 +19,73 @@ export default function FirstPost() {
   const [selectedProduct, setSelectedProduct] = useState();
   const [selectedProductCount, setSelectedCount] =  useState(1);
   const [productData,setProductData] = useState(dummyData);
- 
+  useEffect(()=>{
+    let sessiondata = sessionStorage.getItem('isLoggedIn')
+    if(sessiondata==="true"){
+      setSignedIn(true);
+    }
+    else{
+      setSignedIn(false);
+    }
+  })
+  useEffect(()=>{
+   if(signedIn){
+    let userData = localStorage.getItem('user')
+      userData=JSON.parse(userData || "[]")
+      console.log(userData)
+    let userId = sessionStorage.getItem("userId")
+    userData=userData.map((users)=>{
+      if(users.id===+userId){
+        users["favs"]=favList
+      }
+      return users
+    })
+    localStorage.setItem("user",JSON.stringify(userData))
+   }
+  },[favList])
+
+  useEffect(()=>{
+    if(signedIn){
+     let userData = localStorage.getItem('user')
+       userData=JSON.parse(userData || "[]")
+       console.log(userData)
+     let userId = sessionStorage.getItem("userId")
+     userData=userData.map((users)=>{
+       if(users.id===+userId){
+         users["cart"]=cart
+       }
+       return users
+     })
+     localStorage.setItem("user",JSON.stringify(userData))
+    }
+   },[cart])
+   
+   useEffect(()=>{
+    if(signedIn){
+     let userData = localStorage.getItem('user')
+       userData=JSON.parse(userData || "[]")
+       console.log(userData)
+     let userId = sessionStorage.getItem("userId")
+     userData=userData.map((users)=>{
+       if(users.id===+userId){
+         setCart(users["cart"]);
+         setFavList(users["favs"]);
+       }
+       return users
+     })
+     localStorage.setItem("user",JSON.stringify(userData))
+    }
+   },[signedIn])
+
+
+  const handleClick= (callback)=>{
+    if(signedIn){
+      callback;
+    }
+    else{
+      Router.push('/signin')
+    }
+  }
   const handleSelect = (data) =>{
     if(cart.some((items)=>{return items.cartItems.productCode===data.productCode})){
       console.log(cart.find((items)=>{
@@ -313,7 +373,7 @@ export default function FirstPost() {
               {
                  productData.map((data,index)=>{
                    return (
-                     <div key={index} onClick={()=>handleSelect(data)}>
+                     <div key={index} onClick={()=>handleClick(handleSelect(data))}>
                        <FoodCard data={data} key={index}/>
                      </div>
                      )

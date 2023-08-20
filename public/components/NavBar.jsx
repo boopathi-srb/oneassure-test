@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../styles/Navbar.module.css';
 import { useRouter } from 'next/router';
-
+import moment from 'moment/moment';
+import { Security } from '../utils/hashPass';
 const Navbar = () => {
   const router = useRouter();
   const [signedIn,setSignedIn] = useState(false);
   const [userName,setUserName] = useState("")
   useEffect(()=>{
     let sessiondata = sessionStorage.getItem('isLoggedIn')
-    if(sessiondata==="true"){
+    let userData = localStorage.getItem('user')
+    if(sessiondata==="true" && !!userData){
       setSignedIn(true);
-      let userData = localStorage.getItem('user')
-      setUserName(JSON.parse(userData)?.userName)
+      userData=JSON.parse(userData || "[]")
+      console.log(userData)
+      let userId = sessionStorage.getItem("userId")
+      let userData1 = userData.find((users)=>users.id===+userId)
+      console.log(userId,userData1)
+      setUserName(userData1.userName)
     }
     else{
       setSignedIn(false);

@@ -3,6 +3,7 @@ import styles from '../styles/SignInCard.module.css'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import {Security} from '../public/utils/hashPass';
+import moment from 'moment/moment';
 
 
 function SignInForm() {
@@ -17,15 +18,24 @@ function SignInForm() {
       setError("Please fill all the fields");
       return;
     }
-    let userData=localStorage.getItem("user")
+    let userData=localStorage.getItem("user") || "[]"
     userData=JSON.parse(userData)
     console.log(userData)
-    if(!!userData && userData.email===email){
-      if(Security.decodeString(userData.password)===password){
+    if(!!userData && userData.some((users)=>users.email===email)){
+      let userData1 = userData.find((users)=>users.email===email)
+      if(Security.decodeString(userData1.password)===password){
         sessionStorage.setItem('isLoggedIn',true);
+        sessionStorage.setItem("userId",userData1.id)
         localStorage.setItem('remember', remember)
+        if(remember){
+          localStorage.setItem("token",Security.encodeString(Math.random().toString()+moment().add(2,'days').format("-HH:mm:ss")));
+          sessionStorage.setItem("token",Security.encodeString(Math.random().toString()+moment().add(2,'days').format("-HH:mm:ss")))
+        }
+        else{
+          sessionStorage.setItem("token",Security.encodeString(Math.random().toString()+moment().add(2,'days').format("-HH:mm:ss")))
+        }
         setError("")
-        Router.push('/listings/food-listing')
+        Router.push('/')
       }
       else{
         setError("Password / Email is not valid")

@@ -31,14 +31,20 @@ function SignUpForm() {
         return;
       }
       setError("");
+      let userData = localStorage.getItem("user")
+      userData = JSON.parse(userData || "[]")
       let user = {
+        id:Math.random(),
         email:email,
         userName:userName,
-        password:Security.encodeString(password)
+        password:Security.encodeString(password),
+        favs:[],
+        cart:[]
       }
       console.log(user,'user')
-      localStorage.setItem("user",JSON.stringify(user))
-      Router.push("/signin")
+      userData.push(user)
+      localStorage.setItem("user",JSON.stringify(userData))
+      Router.push(`/signin`)
     }
     else{
       setError("Please fill all the fields");
