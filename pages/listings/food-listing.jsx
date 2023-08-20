@@ -20,6 +20,7 @@ export default function FirstPost() {
   const [selectedProductCount, setSelectedCount] =  useState(1);
   const [productData,setProductData] = useState(dummyData);
   useEffect(()=>{
+    //use effect for sign in check
     let sessiondata = sessionStorage.getItem('isLoggedIn')
     if(sessiondata==="true"){
       setSignedIn(true);
@@ -29,6 +30,7 @@ export default function FirstPost() {
     }
   })
   useEffect(()=>{
+    //use effect to add favlist to userdata when it changes
    if(signedIn){
     let userData = localStorage.getItem('user')
       userData=JSON.parse(userData || "[]")
@@ -45,6 +47,7 @@ export default function FirstPost() {
   },[favList])
 
   useEffect(()=>{
+    //use effect to add cart to userdata when it changes
     if(signedIn){
      let userData = localStorage.getItem('user')
        userData=JSON.parse(userData || "[]")
@@ -61,6 +64,7 @@ export default function FirstPost() {
    },[cart])
    
    useEffect(()=>{
+    //use effect retrieve cart and favlist from userdata after signing in
     if(signedIn){
      let userData = localStorage.getItem('user')
        userData=JSON.parse(userData || "[]")
@@ -79,6 +83,7 @@ export default function FirstPost() {
 
 
   const handleClick= (callback)=>{
+    //function to check whether user is signd in before adding items to cart
     if(signedIn){
       callback;
     }
@@ -87,10 +92,8 @@ export default function FirstPost() {
     }
   }
   const handleSelect = (data) =>{
+    //function to check whether the suer adds same product or differet product and update the respectively
     if(cart.some((items)=>{return items.cartItems.productCode===data.productCode})){
-      console.log(cart.find((items)=>{
-        return items.cartItems.productCode===data.productCode
-      }).count,"'find cart")
       setSelectedCount((prev)=>{return prev=cart.find((items)=>{
         return items.cartItems.productCode===data.productCode
       }).count})
@@ -101,9 +104,9 @@ export default function FirstPost() {
     setSelectedProduct((prev)=>{prev=data; return prev });
     setShowOverLay(true);
   }
-  console.log(cart,'------------------>cart')
     return (
       <Layout>
+ {/* start of fav over lay */}
       {
         showCart&&
         <Overlay
@@ -123,6 +126,7 @@ export default function FirstPost() {
                           <button 
                           className={styles.remove_button}
                           onClick={()=>{
+                            //button to remove a particular item from cart
                             setCart((prev)=>{
                              return prev.reduce((accumulator, value)=>{
                                if(value.cartItems.productCode !== items.cartItems.productCode){
@@ -137,7 +141,7 @@ export default function FirstPost() {
                        </div>
                        <span className={styles.overlay_cartitemprice}>Rs. {items.cartItems.price}</span>
                        <span className={styles.overlay_cartitemcount}>
-                          <button 
+                          <button //minus button
                             className={styles.minus_button} 
                             onClick={()=>
                             setCart((prev)=>prev.map((item)=>
@@ -147,7 +151,7 @@ export default function FirstPost() {
                             -
                           </button>
                           <span className={styles.overlay_cartitemcount}>{items.count} No(s)</span>
-                          <button 
+                          <button  //plus button
                             className={styles.add_button} 
                             onClick={()=>
                               setCart((prev)=>prev.map((item)=>
@@ -162,7 +166,7 @@ export default function FirstPost() {
                    )
                  })
                }
-               <div className={styles.overlay_cart_totalprice_wrapper}>
+               <div className={styles.overlay_cart_totalprice_wrapper}> 
                   <span className={styles.overlay_cart_totalprice}>Total</span>
                   <span className={styles.overlay_cartitemprice}>Rs. {cart.reduce((accumulator,currentvalue)=>{
                   return accumulator+=currentvalue.cartItems.price*currentvalue.count
@@ -187,8 +191,9 @@ export default function FirstPost() {
           </>}
         />
       }
+{/* end of cart over lay */}
 
-
+{/*start of fav over lay */}
       {
         showFavs&&
         <Overlay
@@ -232,9 +237,9 @@ export default function FirstPost() {
           </>}
         />
       }
+{/* end of fav over lay */}
 
-
-
+{/* start of product over lay */}
       {
         showOverLay&&
         <Overlay
@@ -307,6 +312,10 @@ export default function FirstPost() {
           </>}
         />
       }
+
+    {/* end of product over lay */}
+
+
         <div className={styles.title_wrapper}>
           <div className={styles.logo_wrapper}>
             <div className={styles.logo}>

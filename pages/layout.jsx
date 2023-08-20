@@ -11,6 +11,7 @@ const Layout = ({ children }) => {
     if(sessiondata==="true"){
       let remember = localStorage.getItem("remember");
       if(remember==="true"){
+        //if rememmber true, adding new tken with updated expiery if it is expired 
         let token = localStorage.getItem("token")
         token = Security.decodeString(token);
         let exp =moment(token.split("-")[1])
@@ -23,6 +24,7 @@ const Layout = ({ children }) => {
         token=token;
       }
       else{
+        // else redirecting to sign in
         let token = sessionStorage.getItem("token");
         token = Security.decodeString(token);
         let exp =moment(token.split("-")[1]);

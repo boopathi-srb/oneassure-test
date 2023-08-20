@@ -41,6 +41,7 @@ function SignUpForm() {
         favs:[],
         cart:[]
       }
+      //if different use, updating the users array and setting it in localstorage
       console.log(user,'user')
       userData.push(user)
       localStorage.setItem("user",JSON.stringify(userData))

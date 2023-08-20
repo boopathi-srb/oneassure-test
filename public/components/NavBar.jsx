@@ -8,6 +8,7 @@ const Navbar = () => {
   const [signedIn,setSignedIn] = useState(false);
   const [userName,setUserName] = useState("")
   useEffect(()=>{
+    //use effect to show username at the top when signed in
     let sessiondata = sessionStorage.getItem('isLoggedIn')
     let userData = localStorage.getItem('user')
     if(sessiondata==="true" && !!userData){
@@ -40,7 +41,7 @@ const Navbar = () => {
       <ul className={styles.navLinks_right}>
       {
         signedIn?
-        <li className={router.pathname === '/signin' ? styles.active : ''} style={{cursor:'pointer'}} onClick={()=>{sessionStorage.setItem('isLoggedIn', false); window.location.reload()}}>Sign out</li>
+        <li className={router.pathname === '/signin' ? styles.active : ''} style={{cursor:'pointer'}} onClick={()=>{sessionStorage.setItem('isLoggedIn', false); window.location.reload()}}>Sign out</li> // setting isLogged as false in session
         :
         <li className={router.pathname === '/signin' ? styles.active : ''}><a href='/signin'>Sign In</a></li>
       }

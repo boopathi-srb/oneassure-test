@@ -28,10 +28,12 @@ function SignInForm() {
         sessionStorage.setItem("userId",userData1.id)
         localStorage.setItem('remember', remember)
         if(remember){
+          //if remember sign in adding token both inj local and session
           localStorage.setItem("token",Security.encodeString(Math.random().toString()+moment().add(2,'days').format("-HH:mm:ss")));
           sessionStorage.setItem("token",Security.encodeString(Math.random().toString()+moment().add(2,'days').format("-HH:mm:ss")))
         }
         else{
+           //if not remember sign in adding token in session
           sessionStorage.setItem("token",Security.encodeString(Math.random().toString()+moment().add(2,'days').format("-HH:mm:ss")))
         }
         setError("")

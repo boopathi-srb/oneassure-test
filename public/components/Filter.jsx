@@ -17,6 +17,7 @@ const Filter = ({ data, filteredData, setFilteredData}) => {
   
 
     useEffect(()=>{
+        // creating dummy array to count no of products in each type
         let dummySeasonArray = [];
         let dummyDietaryPreferenceArray = [];
         let dummyMealArray = [];
@@ -27,6 +28,7 @@ const Filter = ({ data, filteredData, setFilteredData}) => {
             dummySeasonArray.push(products.season);
             dummySweetThingsArray.push(products.sweetThings);
         }
+        // filtering and adding type and its count as an aray of objects to main array
         setSeasonMainArray(createNameCountArray(dummySeasonArray));
         setDietaryPreferenceMainArray(createNameCountArray(dummyDietaryPreferenceArray));
         setMealMainArray(createNameCountArray(dummyMealArray));
@@ -34,6 +36,7 @@ const Filter = ({ data, filteredData, setFilteredData}) => {
     },[filteredData])
 
     function countOccurrences(arr) {
+        //function to count occurences
         const counts = {};
         for (let i = 0; i < arr.length; i++) {
           const str = arr[i];
@@ -43,6 +46,7 @@ const Filter = ({ data, filteredData, setFilteredData}) => {
     }
 
     function createNameCountArray(arr) {
+        //creating an aray eith item and no of occurrence
         const counts = countOccurrences(arr);
         const result = [];
         for (const str in counts) {
@@ -51,15 +55,14 @@ const Filter = ({ data, filteredData, setFilteredData}) => {
         return result;
       }
 
-    function Filter(productData,filterData,filterKeyWord){
+    function Filter(productData,filterData,filterKeyWord){           // filter function
         if(filterData.length==0){
             return productData;
         }
         else{
-            let dummyArray=[];
+            let dummyArray=[];   // dummy array in which fileterd products to be added
             for(let products of productData){
-                // console.log(products[filterKeyWord],filterData,filterData.includes(products[filterKeyWord]),"-------->bugfix")
-                if(filterData.includes(products[filterKeyWord])){
+                if(filterData.includes(products[filterKeyWord])){  // if product dat has the keywiord, add it to dummmy array
                     dummyArray.push(products);
                 }
                 else{
@@ -71,7 +74,7 @@ const Filter = ({ data, filteredData, setFilteredData}) => {
         }
     }
 
-    function searchFilter(productData){
+    function searchFilter(productData){  //filter by name
         if(searchValue===""){
           return productData;
         }
@@ -87,6 +90,8 @@ const Filter = ({ data, filteredData, setFilteredData}) => {
     };
 
     useEffect(()=>{
+        //master usseffect that runs whenehver the filter is clicked or the particular-type arrays gets changed
+        // any chnage in one filter type, the data undergoes through filter to maintain prev filter states
         let productData = data;
         let seasonFilteredArray = Filter(productData,seasonArray,"season");
         let dietaryPreferenceFilteredArray = Filter(seasonFilteredArray,dietaryPreferenceArray,"dietaryPreference");
@@ -117,7 +122,7 @@ const Filter = ({ data, filteredData, setFilteredData}) => {
                                 name={seasons.name}
                                 label={seasons.name.replaceAll("-"," ")+" ("+seasons.count+")"}
                                 defaultChecked={seasonArray.includes(seasons.name)}
-                                onChange={(checked)=>{
+                                onChange={(checked)=>{   //if cheked adding the type to  particular type of array
                                     checked?
                                     setSeasonArray((prev)=>{return [...prev,seasons.name]})
                                     :

@@ -1,6 +1,6 @@
 function encodeString(inputString)
 {
-  return inputString.replace(/[A-Za-z]/g, function (char) {
+  return inputString.replace(/[A-Za-z]/g, function (char) { //adding random alphabets instead of the original alphabets
           var code = char.charCodeAt(0);
           if (char >= 'A' && char <= 'Z') {
             return String.fromCharCode(((code - 65 + 13) % 26) + 65);
@@ -10,7 +10,7 @@ function encodeString(inputString)
         });
 }
 function decodeString(encodedString) {
-    var decodedString = encodedString.replace(/[A-Za-z]/g, function (char) {
+    var decodedString = encodedString.replace(/[A-Za-z]/g, function (char) { //repeatng the same will give the original text
       var code = char.charCodeAt(0);
       if (char >= 'A' && char <= 'Z') {
         return String.fromCharCode(((code - 65 + 13) % 26) + 65);
